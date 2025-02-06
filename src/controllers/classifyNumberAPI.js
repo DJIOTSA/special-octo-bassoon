@@ -19,7 +19,7 @@ const classifyNumberAPI = async (req, res) => {
 
   // Ensure the input contains only valid integer characters
   if (!/^-?\d+$/.test(number)) {
-    return res.status(400).json({
+    return res.status(200).json({
       number: originalNumber,
       error: true,
     });
