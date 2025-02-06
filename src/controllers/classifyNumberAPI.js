@@ -12,6 +12,14 @@ const classifyNumberAPI = async (req, res) => {
     });
   }
 
+  // Check for negative numbers
+  if (num < 0) {
+    return res.status(400).json({
+      number: originalNumber,
+      error: true,
+    });
+  }
+
   // Preserve the original value before casting
   const originalNumber = number;
   number = number.trim();
