@@ -1,0 +1,32 @@
+name: Deploy to AWS EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.AWS_SSH_KEY }}
+          known_hosts: "just-a-placeholder-so-we-dont-get-errors"
+
+      - name: Build and Deploy
+        run: |
+          ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.AWS_EC2_IP }} "
+            docker stop special-octo-bassoon || true &&
+            docker rm special-octo-bassoon || true &&
+            docker rmi special-octo-bassoon || true &&
+            git clone https://github.com/your-username/special-octo-bassoon.git /home/ec2-user/special-octo-bassoon &&
+            cd /home/ec2-user/special-octo-bassoon &&
+            docker build -t special-octo-bassoon . &&
+            docker run -d -p 80:80 --name special-octo-bassoon special-octo-bassoon
+          "
