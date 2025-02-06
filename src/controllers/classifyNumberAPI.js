@@ -1,18 +1,7 @@
-const express = require("express");
-const cors = require("cors");
-const { classifyNumber } = require("./utils/mathUtils");
-const { fetchFunFact } = require("./utils/numbersAPI");
+const { classifyNumber } = require("../utils/mathUtils");
+const { fetchFunFact } = require("../services/numbersAPI");
 
-const app = express();
-const port = process.env.PORT || 3000;
-
-app.use(cors());
-
-/**
- * GET /api/classify-number
- * Classifies a number and returns its mathematical properties and a fun fact.
- */
-app.get("/api/classify-number", async (req, res) => {
+const classifyNumberAPI = async (req, res) => {
   let { number } = req.query;
 
   // Check if number is provided
@@ -50,10 +39,6 @@ app.get("/api/classify-number", async (req, res) => {
     digit_sum: properties.digitSum,
     fun_fact: funFact,
   });
-});
+};
 
-
-
-app.listen(port, () => {
-  console.log(`API running on port ${port}`);
-});
+module.exports = { classifyNumberAPI };
