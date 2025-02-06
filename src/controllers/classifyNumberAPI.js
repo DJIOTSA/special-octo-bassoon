@@ -26,7 +26,7 @@ const classifyNumberAPI = async (req, res) => {
   }
 
   // Check for negative numbers
-  if (num < 0) {
+  if (number < 0) {
     return res.status(400).json({
       number: originalNumber,
       error: true,
