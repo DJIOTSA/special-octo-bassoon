@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: Linux/UNIX
+    runs-on: Amazon Linux 2023
 
     steps:
       - name: Checkout code
