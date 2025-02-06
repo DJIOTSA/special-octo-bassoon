@@ -19,14 +19,25 @@ jobs:
           key: ${{ secrets.AWS_SSH_KEY }}
           known_hosts: "just-a-placeholder-so-we-dont-get-errors"
 
+      - name: Install Git and Docker on EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.AWS_EC2_IP }} "
+            sudo yum update -y &&
+            sudo yum install -y git docker &&
+            sudo service docker start &&
+            sudo usermod -a -G docker ec2-user
+          "
+
       - name: Build and Deploy
         run: |
           ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.AWS_EC2_IP }} "
             docker stop special-octo-bassoon || true &&
             docker rm special-octo-bassoon || true &&
             docker rmi special-octo-bassoon || true &&
-            git clone https://github.com/DJIOTSA/special-octo-bassoon.git /home/ec2-user/special-octo-bassoon &&
-            cd /home/ec2-user/special-octo-bassoon &&
+            cd /home/ec2-user &&
+            rm -rf special-octo-bassoon &&
+            git clone https://github.com/DJIOTSA/special-octo-bassoon.git &&
+            cd special-octo-bassoon &&
             docker build -t special-octo-bassoon . &&
             docker run -d -p 80:80 --name special-octo-bassoon special-octo-bassoon
           "
