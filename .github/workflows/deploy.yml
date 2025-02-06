@@ -25,7 +25,7 @@ jobs:
             docker stop special-octo-bassoon || true &&
             docker rm special-octo-bassoon || true &&
             docker rmi special-octo-bassoon || true &&
-            git clone https://github.com/your-username/special-octo-bassoon.git /home/ec2-user/special-octo-bassoon &&
+            git clone https://github.com/DJIOTSA/special-octo-bassoon.git /home/ec2-user/special-octo-bassoon &&
             cd /home/ec2-user/special-octo-bassoon &&
             docker build -t special-octo-bassoon . &&
             docker run -d -p 80:80 --name special-octo-bassoon special-octo-bassoon
