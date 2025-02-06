@@ -49,7 +49,7 @@ Classifies a number and returns its mathematical properties and a fun fact.
 ## **Technologies Used**
 - **Backend**: Node.js, Express.js
 - **External API**: [Numbers API](http://numbersapi.com)
-- **Deployment**: Google Cloud Platform (Cloud Run)
+- **Deployment**: Render
 - **Containerization**: Docker
 - **Version Control**: GitHub
 
@@ -61,13 +61,12 @@ Classifies a number and returns its mathematical properties and a fun fact.
 - Node.js (v16 or higher)
 - npm (Node Package Manager)
 - Docker (optional, for containerization)
-- Google Cloud SDK (optional, for deployment)
+- GitHub repository for CI/CD setup with GitHub Actions
 
 ### **Steps to Run Locally**
 1. Clone the repository:
    ```bash
-   git clone git@github.com:DJIOTSA/devops_task1.git
-   cd number-classification-express-api
+   git clone git@github.com:DJIOTSA/special-octo-bassoon.git
    ```
 
 2. Install dependencies:
@@ -86,36 +85,15 @@ Classifies a number and returns its mathematical properties and a fun fact.
 
 ---
 
-## **Deployment to Google Cloud Platform (GCP)**
+## **Deployment on Render**
 
-### **Prerequisites**
-- Google Cloud account (free tier available)
-- Google Cloud SDK installed and configured
+1. **Push changes to GitHub**: The app is deployed automatically to Render whenever changes are pushed to the `main` branch.
 
-### **Steps to Deploy**
-1. Build the Docker image:
-   ```bash
-   docker build -t gcr.io/YOUR_PROJECT_ID/number-classification-api .
+2. **Access the deployed API**: Render will provide a URL like:
    ```
-
-2. Push the Docker image to Google Container Registry (GCR):
-   ```bash
-   docker push gcr.io/YOUR_PROJECT_ID/number-classification-api
+   https://special-octo-bassoon.onrender.com/api/classify-number?number=371
    ```
-
-3. Deploy to Cloud Run:
-   ```bash
-   gcloud run deploy number-classification-api \
-     --image gcr.io/YOUR_PROJECT_ID/number-classification-api \
-     --platform managed
-   ```
-
-4. Access the deployed API:
-   - Cloud Run will provide a URL like:
-     ```
-     https://number-classification-api-xyz.a.run.app
-     ```
-   - Visit: `https://number-classification-api-xyz.a.run.app/api/classify-number?number=371`
+   - Visit: `https://special-octo-bassoon.onrender.com/api/classify-number?number=371`
 
 ---
 
@@ -149,12 +127,12 @@ This project is licensed under the MIT License.
 
 ## **Acknowledgments**
 - [Numbers API](http://numbersapi.com) for providing fun facts about numbers.
-- Google Cloud Platform for hosting the API.
+- Render for hosting the API.
 
 ---
 
 ## **Contact**
 For questions or feedback, please contact:
-- **Your Name**
+- **DJIOTSA DJOUAKE CHRISTIAN DARYN**
 - **Email**: mhulodjiotsa@gmail.com
 - **GitHub**: [DJIOTSA](https://github.com/DJIOTSA)
