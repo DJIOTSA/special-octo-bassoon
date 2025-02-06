@@ -49,9 +49,11 @@ const isArmstrong = (num) => {
  */
 const getDigitSum = (num) => {
   // Convert the number to a string, remove the negative sign if present, and split into digits
-  const numString = Math.abs(num).toString();
+  if(num<0){
+    num = num*-1
+  }
 
-  return numString
+  return String(num)
     .split("")
     .reduce((acc, digit) => acc + Number(digit), 0);
 };
