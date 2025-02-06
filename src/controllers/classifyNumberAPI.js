@@ -6,7 +6,7 @@ const classifyNumberAPI = async (req, res) => {
 
   // Check if number is provided
   if (!number) {
-    return res.status(400).json({
+    return res.status(200).json({
       number: "undefined",
       error: true,
     });
