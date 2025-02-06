@@ -31,10 +31,14 @@ CMD ["node", "app.js"]
 FROM nginx:alpine  
 
 # Copy the built application from the 'builder' stage to Nginx's default serving directory
-COPY --from=builder /app /usr/share/nginx/html  
+# COPY --from=builder /app /usr/share/nginx/html  
+COPY --from=builder /app/build /usr/share/nginx/html
 
 # Copy the custom Nginx configuration file to the appropriate directory
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf  
 
 # Expose port 80 to allow incoming HTTP traffic
 EXPOSE 80  
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
